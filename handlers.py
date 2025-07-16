@@ -12,7 +12,7 @@ def handle_main_menu(text, session, phone_number, send):
         session["option"] = 3
         session["step"] = 1
     elif text == "4":
-        send("Para comunicarte directamente con un asesor escribenos a este numero: 3144756457", phone_number)
+        send("Para comunicarte directamente con un asesor escribenos a este numero: https://wa.me/573144756457", phone_number)
         session["option"] = 4
     else:
         send("Por favor, ingresa una opción válida.", phone_number)

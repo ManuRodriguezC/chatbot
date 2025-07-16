@@ -54,19 +54,21 @@ async def receive_message(request: Request):
             }).execute()
             sendMessage(welcome_message, phone_number)
         else:
-            supabase.table("session").update({
-                "init": True,
-                "updated_at": now.isoformat()
-            }).eq("phone", phone_number).execute()
+            now = datetime.now(timezone.utc)
             session = res.data[0]
             
             updated_at_str = session.get("updated_at")
-            print(updated_at_str)
+            updated_at = datetime.strptime(updated_at_str, "%Y-%m-%d %H:%M:%S.%f")
             
-            # if now - updated_at > timedelta(minutes=5):
-            #     supabase.table("session").delete().eq("phone", phone_number).execute()
-            #     sendMessage(welcome_message, phone_number)
-            #     return {"status": "session ended"}
+            if now - updated_at > timedelta(minutes=5): 
+                supabase.table("session").delete().eq("phone", phone_number).execute()
+                sendMessage("Tu tiempo de respuesta superó nuestro tiempo de espera. Por favor, inicia una nueva conversación para continuar con la atención.", phone_number)
+                return {"status": "session ended"}
+            else:
+                supabase.table("session").update({
+                    "init": True,
+                    "updated_at": now.isoformat()
+                }).eq("phone", phone_number).execute()
             
         # Si el usuario escribe "salir"
         if text == "salir":
