@@ -55,7 +55,8 @@ async def receive_message(request: Request):
             sendMessage(welcome_message, phone_number)
         else:
             now = datetime.now(timezone.utc)
-
+            session = res.data[0]
+            
             updated_at_str = session.get("updated_at")
 
             try:
@@ -79,7 +80,7 @@ async def receive_message(request: Request):
                     "init": True,
                     "updated_at": now.isoformat()
                 }).eq("phone", phone_number).execute()
-            
+                        
         # Si el usuario escribe "salir"
         if text == "salir":
             sendMessage("Gracias por contactarnos. ¡Hasta luego!", phone_number)
