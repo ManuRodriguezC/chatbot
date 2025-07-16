@@ -1,5 +1,4 @@
 from messages import welcome_message, info_servicios, horarios_atencion, pqrs, optionsPqrs, getBadWords, createPqrs
-import requests
 
 def handle_main_menu(text, session, phone_number, send):
     if text == "1":

@@ -6,7 +6,6 @@ from handlers import handlers
 from fastapi.responses import JSONResponse, PlainTextResponse
 from supabase_client import supabase  # ✅ ya contiene el client creado
 from messages import welcome_message
-from datetime import datetime, timedelta, timezone
 
 load_dotenv()
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
@@ -51,45 +50,17 @@ async def receive_message(request: Request):
                 "init": True
             }).execute()
             sendMessage(welcome_message, phone_number)
-
         else:
+            supabase.table("session").update({
+                "init": True
+            }).eq("phone", phone_number).execute()
             session = res.data[0]
-            updated_at_str = session.get("updated_at")
             
-            if updated_at_str:
-                # Convertir a datetime
-                updated_at = datetime.fromisoformat(updated_at_str.replace("Z", "+00:00"))
-                now = datetime.now(timezone.utc)
-
-                if now - updated_at > timedelta(minutes=5):
-                    # Borrar y crear nueva sesión
-                    supabase.table("session").delete().eq("phone", phone_number).execute()
-                    session = supabase.table("session").insert({
-                        "phone": phone_number,
-                        "option": 0,
-                        "init": True
-                    }).execute()
-                    sendMessage(welcome_message, phone_number)
-                else:
-                    # Solo actualizar `init`
-                    supabase.table("session").update({
-                        "init": True
-                    }).eq("phone", phone_number).execute()
-            else:
-                # Si `updated_at` es NULL, tratarlo como una nueva sesión
-                supabase.table("session").delete().eq("phone", phone_number).execute()
-                session = supabase.table("session").insert({
-                    "phone": phone_number,
-                    "option": 0,
-                    "init": True
-                }).execute()
-                sendMessage(welcome_message, phone_number)
-                    
-                # Si el usuario escribe "salir"
-                if text == "salir":
-                    sendMessage("Gracias por contactarnos. ¡Hasta luego!", phone_number)
-                    supabase.table("session").delete().eq("phone", phone_number).execute()
-                    return {"status": "session ended"}
+        # Si el usuario escribe "salir"
+        if text == "salir":
+            sendMessage("Gracias por contactarnos. ¡Hasta luego!", phone_number)
+            supabase.table("session").delete().eq("phone", phone_number).execute()
+            return {"status": "session ended"}
 
 
         # Obtener y procesar handler
