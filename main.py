@@ -55,21 +55,26 @@ async def receive_message(request: Request):
             sendMessage(welcome_message, phone_number)
         else:
             now = datetime.now(timezone.utc)
-            session = res.data[0]
-            
-            updated_at_str = session.get("updated_at")
-            try:
-                updated_at = datetime.fromisoformat(updated_at_str)
-            except Exception:
-                # Si falla el formato, considera que está expirada
-                updated_at = now - timedelta(minutes=10)  # fuerza a que se elimine
 
-            # Comparar si pasaron más de 5 minutos
+            updated_at_str = session.get("updated_at")
+
+            try:
+                # Convertir y asegurar que updated_at tenga zona horaria UTC
+                updated_at = datetime.fromisoformat(updated_at_str)
+                if updated_at.tzinfo is None:
+                    updated_at = updated_at.replace(tzinfo=timezone.utc)
+            except Exception:
+                # Si hay error, forzamos expiración
+                updated_at = now - timedelta(minutes=10)
+
+            # Ahora sí puedes comparar
             if now - updated_at > timedelta(minutes=5):
+                # Sesión expirada
                 supabase.table("session").delete().eq("phone", phone_number).execute()
                 sendMessage("Tu tiempo de respuesta superó nuestro tiempo de espera. Por favor, inicia una nueva conversación para continuar con la atención.", phone_number)
                 return {"status": "session ended"}
             else:
+                # Sesión válida, actualizar timestamp
                 supabase.table("session").update({
                     "init": True,
                     "updated_at": now.isoformat()
