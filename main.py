@@ -6,6 +6,7 @@ from handlers import handlers
 from fastapi.responses import JSONResponse, PlainTextResponse
 from supabase_client import supabase  # ✅ ya contiene el client creado
 from messages import welcome_message
+from datetime import datetime, timezone, timedelta
 
 load_dotenv()
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
@@ -41,20 +42,30 @@ async def receive_message(request: Request):
         text = message["text"]["body"].strip().lower()
 
         res = supabase.table("session").select("*").eq("phone", phone_number).execute()
+        now = datetime.now(timezone.utc)
         
         if not res.data:
             # Crear nueva sesión
             session = supabase.table("session").insert({
                 "phone": phone_number,
                 "option": 0,
-                "init": True
+                "init": True,
+                "updated_at": now.isoformat()
             }).execute()
             sendMessage(welcome_message, phone_number)
         else:
             supabase.table("session").update({
-                "init": True
+                "init": True,
             }).eq("phone", phone_number).execute()
             session = res.data[0]
+            
+            updated_at_str = session.get("updated_at")
+            updated_at = datetime.fromisoformat(updated_at_str.replace("Z", "+00:00"))
+            
+            if now - updated_at > timedelta(minutes=5):
+                supabase.table("session").delete().eq("phone", phone_number).execute()
+                sendMessage(welcome_message, phone_number)
+                return {"status": "session ended"}
             
         # Si el usuario escribe "salir"
         if text == "salir":
