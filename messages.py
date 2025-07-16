@@ -53,10 +53,10 @@ def optionsPqrs():
       'id': option['id']
     }
     for index, option in enumerate(options)]
-  print(setOptions)
-  text = """*Tipos de requerimiento:*\n"""
+  text = """*Tipos de Solicitudes:*\n\n"""
+  text += "Por favor, selecciona el numero del solicitud que deseas registrar:\n\n"
   for option in setOptions:
-    text += f"{option['index']}) {option['option']}\n"
+    text += f"*{option['index']})*  {option['option']}\n"
   
   successOptions = [str(option['index']) for option in setOptions]
   return text, successOptions, setOptions
