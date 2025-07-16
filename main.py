@@ -58,9 +58,14 @@ async def receive_message(request: Request):
             session = res.data[0]
             
             updated_at_str = session.get("updated_at")
-            updated_at = datetime.strptime(updated_at_str, "%Y-%m-%d %H:%M:%S.%f")
-            
-            if now - updated_at > timedelta(minutes=5): 
+            try:
+                updated_at = datetime.fromisoformat(updated_at_str)
+            except Exception:
+                # Si falla el formato, considera que está expirada
+                updated_at = now - timedelta(minutes=10)  # fuerza a que se elimine
+
+            # Comparar si pasaron más de 5 minutos
+            if now - updated_at > timedelta(minutes=5):
                 supabase.table("session").delete().eq("phone", phone_number).execute()
                 sendMessage("Tu tiempo de respuesta superó nuestro tiempo de espera. Por favor, inicia una nueva conversación para continuar con la atención.", phone_number)
                 return {"status": "session ended"}
