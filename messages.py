@@ -7,12 +7,35 @@ welcome_message = """
 """
 
 info_servicios = """
-  *Información de servicios:*\n\n
-  Cootratiempo ofrece una variedad de servicios para satisfacer tus necesidades. Aquí tienes un resumen de nuestros servicios más destacados:\n
-  *Ahorros Programados:* Planifica tu futuro con nuestros planes de ahorro flexibles y adaptados a tus objetivos financieros.\n
-  *Créditos Personales:* Obtén el financiamiento que necesitas para tus proyectos personales con tasas competitivas y condiciones accesibles.\n
-  *Servicios Financieros:* Accede a una amplia gama de servicios financieros, incluyendo transferencias, pagos y más.\n
-  *Asesoría Financiera:* Nuestro equipo de expertos está disponible para brindarte asesoría personalizada y ayudarte a tomar decisiones informadas.\n\n
+  *COOTRATIEMPO* es una cooperativa de aporte y crédito fundada en 1975, vinculada a más de 50 empresas de medios de comunicación en Colombia. Ofrece diversos servicios a sus asociados y a sus familias. A continuación, se resumen los principales servicios y beneficios que se prestan\n\n
+  *Servicios Financieros:*\n
+  •	Amplio portafolio de créditos con tasas de interés competitivas (desde el 0,5% mensual, sujeto a condiciones).\n
+  •	Créditos de hasta 150% en aportes ahorrados\n
+  •	Sin costo por estudio de crédito ni consulta en centrales de riesgo (en líneas preferenciales como motocicleta, óptico, salud Etc.).\n\n
+  *Beneficios para Asociados:*\n
+  •	Asociación gratuita.\n
+  •	Protección exequial sin costo para el asociado y 12 personas mas sin importar grado de consanguinidad, Incluida mascotas.\n
+  •	Convenios con descuentos especiales en productos y servicios.\n
+  •	Actividades recreativas y culturales con hasta 40% de descuento.\n
+  •	Posibilidad de continuar como asociado, incluso si se retira de la empresa.\n
+  •	El grupo familiar puede acceder a los mismos beneficios.\n\n
+  *Servicios Adicionales:*\n
+  •	Capacitaciones en temas como cooperativismo, educación financiera y manejo del puntaje crediticio.\n
+  •	Servicios de turismo y recreación\n
+  •	Auxilios Optivos, Clinicos, Calamidad Doméstica.\n
+  •	Convenios estudiantiles\n\n
+  Pago de aportes entre el 3% hasta el 20% sobre el salario y Para asociados independientes a partir del 5% SMMLV.\n
+  Canales de comunicación\n
+  Línea de atención: 6017454745\n
+  Cel. 320 322 1739\n
+  atencionalasociado@cootratiempo.com.co\n
+  COMERCIAL COOTRATIEMPO\n
+  Cel. 311 858 7480\n
+  comercial@cootratiempo.com.co\n
+  redes sociales\n
+  https://www.facebook.com/profile.php?id=100085403948147\n
+  https://www.instagram.com/cootratiempo/\n\n
+
   Si deseas más información sobre alguno de estos servicios, no dudes en preguntar. Estamos aquí para ayudarte.
   Si necesitas asistencia adicional, puedes escribir *asesor* en cualquier momento.
   Si deseas volver al menú principal, escribe *menu*.
