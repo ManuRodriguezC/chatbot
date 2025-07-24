@@ -87,6 +87,11 @@ async def receive_message(request: Request):
             supabase.table("session").delete().eq("phone", phone_number).execute()
             return {"status": "session ended"}
 
+        # Si el usuario escribe "menu"
+        if text == "menu":
+            sendMessage(welcome_message, phone_number)
+            supabase.table("session").update({"option": 0, "step": 1}).eq("phone", phone_number).execute()
+            return {"status": "menu displayed"}
 
         # Obtener y procesar handler
         option = session.get("option", 0)
