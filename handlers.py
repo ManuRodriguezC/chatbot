@@ -103,7 +103,8 @@ def handle_pqrs(text, session, phone_number, send):
     elif step == "4":
         optionsText, successOptions, options = optionsPqrs()
         if text in successOptions:
-            send("Por favor, ingresa una descripcion de tu pqrs, en caso de no requerir ingresa, *No*\n", phone_number)
+            # send("Por favor, ingresa una descripcion de tu pqrs, en caso de no requerir ingresa, *No*\n", phone_number)
+            send("Desea registrar una descripción? *Si/No*", phone_number)
             findOption = [i["id"] for i in options if i['index'] == int(text)][0]
             session["pqrs"] = findOption
             session["step"] = 5
@@ -112,13 +113,29 @@ def handle_pqrs(text, session, phone_number, send):
             send(f"Por favor, selecciona un número válido.\n {optionsText}", phone_number)
 
     elif step == "5":
+        if text.lower() != "no" or text.lower() != "si":
+            send("Por favor, responde con *Si* o *No*.", phone_number)
+            return session
+
+        text = text.strip().lower()
+        if text.lower() == "no":
+            session["description"] = "No se proporcionó descripción."
+            succesCreated, created = createPqrs(session, phone_number)
+            numPqrs = created['num']
+            if not succesCreated:
+                send("Hubo un error al crear la PQRS. Por favor, inténtalo de nuevo más tarde.", phone_number)
+                return session
+            send(f"PQRS creada exitosamente, tu numero de solicitud es *{numPqrs}*", phone_number)
+            
+            send("Gracias por registrar tu PQRS. Nos pondremos en contacto contigo pronto.", phone_number)
+            return "end"
+        
+    elif step == "6":
         badWords = getBadWords()
         descripcion = text.strip()
         palabras = text.split()
         
-        if descripcion.lower() == "no":
-            descripcion = "No se proporcionó descripción."
-        elif len(descripcion) < 10:
+        if len(descripcion) < 10:
             send("La descripción debe tener al menos 10 caracteres.", phone_number)
             return session
         elif not all(palabra.isalnum() for palabra in palabras):
@@ -140,7 +157,6 @@ def handle_pqrs(text, session, phone_number, send):
         send("Gracias por registrar tu PQRS. Nos pondremos en contacto contigo pronto.", phone_number)
 
         return "end"
-        # Aquí podrías guardar la PQRS en la base de datos o enviarla a un endpoint
 
     return session
 

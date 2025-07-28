@@ -3,7 +3,9 @@ welcome_message = """
   *1)* Información de servicios\n
   *2)* Horarios de atención\n
   *3)* Registrar PQRS\n
-  *4)* Hablar con un asesor\n
+  *4)* Hablar con un asesor\n\n
+  En cualquier momento puedes escribir *Menu* para volver a este menú o *Salir* para finalizar la conversación.\n
+  Si necesitas asistencia adicional, puedes escribir *Asesor* en cualquier momento.
 """
 
 info_servicios = """
@@ -44,8 +46,8 @@ info_servicios = """
   
 horarios_atencion = """
   Nuestros horarios de atención son los siguientes:\n
-  *Lunes a Viernes:* 8:00 AM - 5:00 PM\n
-  *Sábados:* 9:00 AM - 1:00 PM\n
+  *Lunes a Viernes:* 8:00 AM - 6:00 PM\n
+  *Sábados:* 8:00 AM - 12:00 PM\n
   Si necesitas asistencia adicional, puedes escribir *asesor* en cualquier momento.
   Si deseas volver al menú principal, escribe *menu*.
   Si deseas salir, escribe *salir*.

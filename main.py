@@ -66,10 +66,10 @@ async def receive_message(request: Request):
                     updated_at = updated_at.replace(tzinfo=timezone.utc)
             except Exception:
                 # Si hay error, forzamos expiración
-                updated_at = now - timedelta(minutes=10)
+                updated_at = now - timedelta(minutes=20)
 
             # Ahora sí puedes comparar
-            if now - updated_at > timedelta(minutes=5):
+            if now - updated_at > timedelta(minutes=15):
                 # Sesión expirada
                 supabase.table("session").delete().eq("phone", phone_number).execute()
                 sendMessage("Tu tiempo de respuesta superó nuestro tiempo de espera. Por favor, inicia una nueva conversación para continuar con la atención.", phone_number)
@@ -91,6 +91,11 @@ async def receive_message(request: Request):
         if text == "menu":
             sendMessage(welcome_message, phone_number)
             supabase.table("session").update({"option": 0, "step": 1}).eq("phone", phone_number).execute()
+            return {"status": "menu displayed"}
+        
+        if text == "asesor":
+            sendMessage("Para comunicarte directamente con un asesor escribenos a este numero: https://wa.me/573144756457", phone_number)
+            supabase.table("session").update({"option": 4, "step": 0}).eq("phone", phone_number).execute()
             return {"status": "menu displayed"}
 
         # Obtener y procesar handler
