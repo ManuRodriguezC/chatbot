@@ -130,7 +130,10 @@ def handle_pqrs(text, session, phone_number, send):
             
             send("Gracias por registrar tu PQRS. Nos pondremos en contacto contigo pronto.", phone_number)
             return "end"
+        
+        send("Ingresa la descripción de tu PQRS.", phone_number)
         session["step"] = 6
+        return session
         
     elif step == "6":
         badWords = getBadWords()
