@@ -113,7 +113,8 @@ def handle_pqrs(text, session, phone_number, send):
             send(f"Por favor, selecciona un número válido.\n {optionsText}", phone_number)
 
     elif step == "5":
-        if text.lower() != "no" or text.lower() != "si":
+        text = text.strip().lower()
+        if text not in ["si", "no"]:
             send("Por favor, responde con *Si* o *No*.", phone_number)
             return session
 
@@ -129,6 +130,7 @@ def handle_pqrs(text, session, phone_number, send):
             
             send("Gracias por registrar tu PQRS. Nos pondremos en contacto contigo pronto.", phone_number)
             return "end"
+        session["step"] = 6
         
     elif step == "6":
         badWords = getBadWords()
