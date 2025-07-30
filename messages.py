@@ -9,23 +9,19 @@ welcome_message = """
 """
 
 info_servicios = """
-  *COOTRATIEMPO* es una cooperativa de aporte y crédito fundada en 1975, vinculada a más de 50 empresas de medios de comunicación en Colombia. Ofrece diversos servicios a sus asociados y a sus familias. A continuación, se resumen los principales servicios y beneficios que se prestan\n\n
+  *COOTRATIEMPO* es una cooperativa de aporte y crédito fundada en 1975, vinculada a más de 50 empresas de medios de comunicación en Colombia. Ofrece diversos servicios a sus asociados y a sus familias. A continuación, se resumen los principales servicios y beneficios que se prestan.\n\n
   *Servicios Financieros:*\n
-  •	Amplio portafolio de créditos con tasas de interés competitivas (desde el 0,5% mensual, sujeto a condiciones).\n
-  •	Créditos de hasta 150% en aportes ahorrados\n
-  •	Sin costo por estudio de crédito ni consulta en centrales de riesgo (en líneas preferenciales como motocicleta, óptico, salud Etc.).\n\n
+  • Amplio portafolio de créditos con tasas de interés competitivas (desde el 0,63% mensual, sujeto a condiciones).\n
+  • Créditos de hasta 150% en aportes ahorrados.\n\n
   *Beneficios para Asociados:*\n
-  •	Asociación gratuita.\n
-  •	Protección exequial sin costo para el asociado y 12 personas mas sin importar grado de consanguinidad, Incluida mascotas.\n
-  •	Convenios con descuentos especiales en productos y servicios.\n
-  •	Actividades recreativas y culturales con hasta 40% de descuento.\n
-  •	Posibilidad de continuar como asociado, incluso si se retira de la empresa.\n
-  •	El grupo familiar puede acceder a los mismos beneficios.\n\n
+  • Asociación gratuita.\n
+  • Protección exequial sin costo para el asociado y 12 personas mas sin importar grado de consanguinidad, Incluida mascotas.\n
+  • Convenios con descuentos especiales en productos y servicios.\n
+  • Posibilidad de continuar como asociado, incluso si se retira de la empresa.\n\n
   *Servicios Adicionales:*\n
-  •	Capacitaciones en temas como cooperativismo, educación financiera y manejo del puntaje crediticio.\n
-  •	Servicios de turismo y recreación\n
-  •	Auxilios Optivos, Clinicos, Calamidad Doméstica.\n
-  •	Convenios estudiantiles\n\n
+  • Capacitaciones en temas como cooperativismo, educación financiera y manejo del puntaje crediticio.\n
+  • Auxilios Optivos, Clinicos, Calamidad Doméstica, Educativo\n
+  • Convenios de salud,estudiantiles, turismo .ETC\n\n
   Pago de aportes entre el 3% hasta el 20% sobre el salario y Para asociados independientes a partir del 5% SMMLV.\n
   Canales de comunicación\n
   Línea de atención: 6017454745\n
@@ -37,11 +33,10 @@ info_servicios = """
   redes sociales\n
   https://www.facebook.com/profile.php?id=100085403948147\n
   https://www.instagram.com/cootratiempo/\n\n
-
-  Si deseas más información sobre alguno de estos servicios, no dudes en preguntar. Estamos aquí para ayudarte.
-  Si necesitas asistencia adicional, puedes escribir *asesor* en cualquier momento.
-  Si deseas volver al menú principal, escribe *menu*.
-  Si deseas salir, escribe *salir*.
+  Si deseas más información sobre alguno de estos servicios, no dudes en preguntar. Estamos aquí para ayudarte.\n
+  Si necesitas asistencia adicional, puedes escribir asesor en cualquier momento.\n
+  Si deseas volver al menú principal, escribe menu.\n
+  Si deseas salir, escribe salir.\n
   """
   
 horarios_atencion = """
