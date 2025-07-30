@@ -50,6 +50,7 @@ horarios_atencion = """
 
 pqrs = """
   Para registrar una PQRS (Petición, Queja, Reclamo o Sugerencia), por favor ingrese sus datos y seleccione su tipo de requerimiento\n\n
+  Su información esta siento tratada bajo la política de TRATAMIENTO DE DATOS PERSONALES que podrá consultar en el siguiente enlace https://acortar.link/zNC9Wr\n\n
   Ingrese su numero de documento:\n
   """
 
